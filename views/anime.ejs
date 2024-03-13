@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/719584d9c7.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./stylesheets/animeStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="./javascripts/anime.js" defer></script>
+    <title>Document</title>
+</head>
+<body class="bg-black">
+
+    <section>
+        <header class="text-white p-1 lg:p-2 gap-1">
+            <div class="flex justify-center items-center gap-1 md:gap-3 lg:gap-4">
+                 <!-- <i class='bx bx-menu text-xl md:text-3xl lg:text-4xl font-bold mt-1' ></i>
+                 <h1 class="text-lg md:text-2xl lg:text-3xl font-extrabold"><span class="text-rose-700">Jam</span>Watch</h1> -->
+                 <div class="menu">
+                  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+                  <label for="openSidebarMenu" class="sidebarIconToggle">
+                    <div class="spinner diagonal part-1 h-[2px] md:h-[3px] lg:h-[4px]"></div>
+                    <div class="spinner horizontal h-[2px] md:h-[3px] lg:h-[4px]"></div>
+                    <div class="spinner diagonal part-2 h-[2px] md:h-[3px] lg:h-[4px]"></div>
+                  </label>
+                  <div id="sidebarMenu">
+                    <ul class="sidebarMenuInner bg-black h-screen">
+                      
+                      <li><a href="/">Home </a></li>
+                      <li><a href="/movie">Movies </a></li>
+                      <li><a href="/tvShow">Web Series</a></li>
+                      <li><a href="/anime">Anime</a></li>
+                      <li><a href="/list">My List</a></li>
+                    </ul>
+                  </div>
+      
+                  </div>
+                  <h1 class="text-lg md:text-2xl lg:text-3xl font-extrabold absolute left-10 top-[6px] md:top-1" ><span class="text-rose-700">Jam</span>Watch</h1>
+            </div>
+     
+            <div class="flex justify-center items-center gap-1 md:gap-3 lg:gap-5">
+                 
+                <div>
+                    <form class="search-container" method="post" action="/animeSearch">
+                         <input id="search-box" type="text" class="search-box font-semibold" name="title" />
+                         <label for="search-box"><i class='bx bx-search-alt text-3xl font-bo search-icon' ></i></label>
+                         <input type="submit" id="search-submit" />
+                       </form>
+                </div>
+     
+                 <button id="showGenre" class="a top-5 right-6 px-1 md:px-3 lg:px-5 py-1 bg-rose-700 text-white font-bold rounded text-sm md:text-base lg:text-lg" onclick="scrollDown()">Recommend</button>
+            </div>
+         </header>
+
+
+         <div class="text-white w-full pl-[2rem] fixed h-0 top-0 lg:top-3 overflow-hidden text-sm md:text-base lg:text-lg" id="genre">
+            <form action="">
+              <div class="column">
+                <input type="checkbox" value="josei"> Josei <br>
+                <input type="checkbox" value="romance"> Romance <br>
+                <input type="checkbox" value="fantasy"> Fantasy <br>
+            </div>
+            <div class="column">
+                <input type="checkbox" value="mecha"> Mecha <br>
+                <input type="checkbox" value="seinen"> Seinen <br>
+                <input type="checkbox" value="shoujo"> Shoujo<br>
+            </div>
+            <div class="column">
+                <input type="checkbox" value="isekai"> Isekai<br>
+                <input type="checkbox" value="comedy"> Comedy<br>
+                <input type="checkbox" value="action"> Action<br>
+            </div>
+            <div class="column">
+                <input type="checkbox" value="drama"> Drama <br>
+                <input type="checkbox" value="ecchi"> Ecchi<br>
+                <input type="checkbox" value="harem"> Harem <br>
+            </div>
+            <div class="column">
+                <input type="checkbox" value="adventure">Adventure<br>
+                <input type="checkbox" value="sports"> Sports <br>
+                <input type="checkbox" value="mystery"> Mystery<br>
+            </div>
+            <div class="column">
+                <input type="checkbox" value="slice-of-life"> Slice Of Life<br>
+                <input type="checkbox" value="martial-arts"> Martial Arts<br>
+                <input type="checkbox" value="high-school"> School<br>
+            </div>
+            </form>
+            <button id="btn" onclick="genreSearch()" class="text-white bg-rose-700 rounded p-1 mt-6 font-semibold">Find Anime</button>
+        </div>
+
+        
+        <% if(dam != null && dam.length > 0){ %>
+          <div class="owl-carousel" id="owl">
+            <% dam.forEach(function(ele){ %>
+              <div class="text-white w-screen h-[55vh] md:h-[65vh] lg:h-[80vh]" style="background-image: url('<%= ele.imageLink %>');background-size: cover; background-position:center;background-repeat: no-repeat;">
+                <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black opacity-100 w-full"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-100 w-full"></div>
+                <h2 class="mt-2 font-extrabold text-xl md:text-3xl lg:text-5xl text-center absolute z-20 left-[3%] top-[70%]"><%= ele.title %></h2>
+                <p class="absolute z-20 left-[3%] top-[80%]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus,<br> quisquam mollitia ad iure magnam aliquam dignissimos</p>
+                <a href="#" class="post-link absolute z-20 text-center bg-rose-700 px-5 py-1 rounded-3xl top-[89%] left-[3%] font-semibold lg:font-bold" data-title="<%= ele.title %>" data-picture="<%= ele.posterImage %>">Visit</a>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+       
+
+    </section>
+
+
+    <div class="movies absolute top-[60vh] md:top-[70vh] lg:top-[85vh]">
+
+        <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Movies</h1>
+          
+        <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+        <% if(t == 1){ %>
+      
+          <% if(info != null && info.length > 0){ %>
+          
+              <% info.forEach(function(ele){ %>
+                <% if(ele != null){ %>
+                  <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
+                      <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.picture_url %>">
+                         
+          
+                          <img src="<%= ele.picture_url %>" alt="">
+                          <h2 class="mt-2 font-bold text-xl"><%= ele.title %></h2>
+                      </a>
+                   </div>
+               <% } %>
+              <% }) %>
+              
+          <% } %>
+      
+      
+      <% }else{ %>
+      
+          <% if(data != null && data.length > 0){ %>
+          
+              <% data.forEach(function(ele){ %>
+                <div class="md:ml-6 lg:ml-6 p-1 text-white mt-14">
+                  <a href="#" class="post-link" data-title="<%= ele.attributes.titles.en %>" data-picture="<%= ele.attributes.posterImage.original %>">
+                     
+      
+                      <img src="<%= ele.attributes.posterImage.original %>" alt="" class="h-[100%] w-[100%]">
+                      <h2 class="mt-2 font-bold text-xl text-center"><%= ele.attributes.titles.en %></h2>
+                  </a>
+               </div>
+              <% }) %>
+      
+          <% } %>
+      
+      
+      <% } %>
+      </div>
+      </div>   
+      
+
+    
+
+    <style>
+        #genre {
+            transition: height .3s ease-in; /* Apply transition effect to height property */
+        }
+    
+        .expanded {
+            height: 52vh;/*; Set height to auto when expanded */
+        }
+      </style>
+
+      <script>
+        $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+      loop:true,
+      autoplay:true, // Add this line to enable autoplay
+      autoplayTimeout:3000,
+      responsive:{
+        0:{
+          items:1
+        },
+        600:{
+          items:1
+        },
+        1000:{
+          items:1
+        }
+      }
+    });
+  });
+
+      </script>
+</body>
+</html>

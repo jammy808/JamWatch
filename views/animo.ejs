@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Images</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-extrabold">
+
+    <style>
+        #imagebox{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .ved{
+            max-width: 400px;
+            max-height: 500px;
+            margin: 10px;
+            border-radius: 2%;
+        }
+        .column {
+    float: left;
+    width: 33.33%;
+}
+
+    </style>
+    <h1 class="text-center text-3xl m-5">Anime <span class="bg-yellow-500 rounded p-1 text-black">Hub</span></h1>
+    <hr>
+    <div class=" flex items-center justify-center">
+
+        <div>
+            <div class="block m-5">
+                <form action="">
+                    <div class="column">
+                        <input type="checkbox" value="josei"> Josei <br>
+                        <input type="checkbox" value="romance"> Romance <br>
+                        <input type="checkbox" value="fantasy"> Fantasy <br>
+                        <input type="checkbox" value="mecha"> Mecha <br>
+                        <input type="checkbox" value="seinen"> Seinen <br>
+                        <input type="checkbox" value="shoujo"> Shoujo<br>
+                    </div>
+                    <div class="column">
+                        <input type="checkbox" value="isekai"> Isekai<br>
+                        <input type="checkbox" value="comedy"> Comedy<br>
+                        <input type="checkbox" value="action"> Action<br>
+                        <input type="checkbox" value="drama"> Drama <br>
+                        <input type="checkbox" value="ecchi"> Ecchi<br>
+                        <input type="checkbox" value="harem"> Harem <br>
+                    </div>
+                    <div class="column">
+                        <input type="checkbox" value="adventure">Adventure<br>
+                        <input type="checkbox" value="sports"> Sports <br>
+                        <input type="checkbox" value="mystery"> Mystery<br>
+                        <input type="checkbox" value="slice-of-life"> Slice Of Life<br>
+                        <input type="checkbox" value="martial-arts"> Martial Arts<br>
+                        <input type="checkbox" value="high-school"> School<br>
+                    </div>
+                </form>
+            </div>
+
+            <button id="btn" onclick="genreSearch()" class="w-full text-black bg-yellow-500 rounded p-1 mb-3">Find Anime</button>
+
+            <div class="flex gap-3 items-center m-5">
+                <form action="/animeSearch" method="post">
+                    <input name="title" type="text" placeholder="Search" class="text-black" id="search">
+                    <button  type="submit" class=" text-black bg-yellow-500 rounded p-1 ">Search</button>
+                </form>
+               
+            </div>
+          
+        
+           
+        
+          
+        </div>
+        
+
+    </div>
+    <hr>
+    
+    <div id="imageBox" class="mt-5">
+
+        <% if(t == 1){ %>
+
+            <% if(info != null && info.length > 0){ %>
+            
+                <% info.forEach(function(ele){ %>
+                    <div>
+                            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.picture_url %>">
+                               
+    
+                                <img src="<%= ele.picture_url %>" alt="">
+                                <h2><%= ele.title %></h2>
+                            </a>
+                    </div>
+                <% }) %>
+                
+            <% } %>
+    
+
+        <% }else{ %>
+
+            <% if(data != null && data.length > 0){ %>
+            
+                <% data.forEach(function(ele){ %>
+                    <div>
+                            <a href="#" class="post-link" data-title="<%= ele.attributes.titles.en %>" data-picture="<%= ele.attributes.posterImage.original %>">
+                               
+    
+                                <img src="<%= ele.attributes.posterImage.original %>" alt="">
+                                <h2><%= ele.attributes.titles.en %></h2>
+                            </a>
+                    </div>
+                <% }) %>
+    
+            <% } %>
+    
+
+        <% } %>   
+
+    </div>
+  
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    const postLinks = document.querySelectorAll(".post-link");
+
+    postLinks.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default action (navigation)
+
+            const title = link.getAttribute("data-title");
+            const pictureUrl = link.getAttribute("data-picture");
+
+            // Prepare the data object to send in the POST request
+            const data = {
+                title: title,
+                picture_url: pictureUrl
+            };
+
+            // Create a hidden form element
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/show'; // Replace with your endpoint URL
+
+            // Create a hidden input field for each data attribute
+            Object.keys(data).forEach(function(key) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            });
+
+            // Append the form to the document body and submit it
+            document.body.appendChild(form);
+            form.submit();
+       
+        });
+    });
+});
+
+
+        const box = document.getElementById("imageBox")
+        const btn = document.getElementById("btn");
+        const category = document.getElementById("category");
+        
+        
+       
+
+        
+        const genreSearch = async() =>{
+            // while (box.firstChild) {
+            //     box.removeChild(box.firstChild);
+            // }
+            var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+            var selectedValues = [];
+                checkboxes.forEach(function(checkbox) {
+                selectedValues.push(checkbox.value);
+            });
+            var genres = selectedValues.join(','); // Concatenate values with comma and space
+            console.log(genres);
+
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/animeGenre';
+            const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = "genres";
+                input.value = genres;
+                form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+
+
+            // const url = `https://kitsu.io/api/edge/anime?filter[categories]=${genres}`;
+
+            // let response = await fetch(url);
+            // let data = await response.json();
+            // console.log(data);
+            // const arr = data.data;
+            
+            // arr.forEach(ele => {
+            //     const div = document.createElement("div");
+            //     const img = document.createElement("img");
+            //     const h1 = document.createElement("h2");
+
+            //     img.classList.add("ved");
+
+            //     h1.innerText = ele.attributes.titles.en_jp;
+            //     img.src =ele.attributes.posterImage.original;
+
+            //     div.appendChild(img);
+            //     div.appendChild(h1);
+
+            //     box.appendChild(div);
+            // });
+
+           
+
+            // const promises = [];
+            // arr.forEach(ele => {
+            //     let id = ele.imdb_id;
+
+            //     const url = `https://moviesminidatabase.p.rapidapi.com/movie/id/${id}/`;
+                
+            //     promises.push(
+            //         fetch(url, options)
+            //             .then(response => response.json())
+            //             .then(data => data.results.image_url)
+            //     );
+            // });
+
+            // Promise.all(promises).then(imageUrls => {
+            //     console.log(imageUrls);
+
+            //     imageUrls.forEach(ele => {
+            //         const img = document.createElement("img");
+            //         img.classList.add("ved");
+            //         img.src = ele;
+            //         box.appendChild(img);
+            //     });
+            // });
+
+        
+        }
+        const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '705b5aca63mshf454daf5bc4a7f5p1a6374jsn4a041afbac23',
+                    'X-RapidAPI-Host': 'myanimelist.p.rapidapi.com'
+                }
+            };
+
+        const titleSearch = async() =>{
+            while (box.firstChild) {
+                box.removeChild(box.firstChild);
+            }
+
+           
+
+            const title = document.getElementById("search").value;
+
+            const url = `https://myanimelist.p.rapidapi.com/v2/anime/search?q=${title}&n=50`;
+
+            let response = await fetch(url,options);
+            let data = await response.json();
+            console.log(data);
+            const arr = data;
+            
+            arr.forEach(ele => {
+                
+                const div = document.createElement("div");
+                const img = document.createElement("img");
+                const h1 = document.createElement("h2");
+
+                img.classList.add("ved");
+
+                h1.innerText = ele.title;
+                img.src =ele.picture_url;
+
+                div.appendChild(img);
+                div.appendChild(h1);
+
+                box.appendChild(div);
+            });
+
+        
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/719584d9c7.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./stylesheets/list.css">
+    <title>Document</title>
+</head>
+<body class="bg-black">
+
+    <header class="text-white p-1 lg:p-2 gap-1">
+        <div class="flex justify-center items-center gap-1 md:gap-3 lg:gap-4">
+            <div class="menu">
+                <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+                <label for="openSidebarMenu" class="sidebarIconToggle">
+                  <div class="spinner diagonal part-1 h-[2px] md:h-[3px] lg:h-[4px]"></div>
+                  <div class="spinner horizontal h-[2px] md:h-[3px] lg:h-[4px]"></div>
+                  <div class="spinner diagonal part-2 h-[2px] md:h-[3px] lg:h-[4px]"></div>
+                </label>
+                <div id="sidebarMenu">
+                  <ul class="sidebarMenuInner bg-black h-screen">
+                    
+                    <li><a href="/">Home </a></li>
+                    <li><a href="/movie">Movies </a></li>
+                    <li><a href="/tvShow">Web Series</a></li>
+                    <li><a href="/anime">Anime</a></li>
+                    <li><a href="/list">My List</a></li>
+                  </ul>
+                </div>
+    
+                </div>
+                <h1 class="text-lg md:text-2xl lg:text-3xl font-extrabold absolute left-10 top-[6px] md:top-1" ><span class="text-rose-700">Jam</span>Watch</h1>
+        </div>
+ 
+        <!-- <div class="flex justify-center items-center gap-1 md:gap-3 lg:gap-5">
+             
+            <div>
+                <form class="search-container" action="">
+                     <input id="search-box" type="text" class="search-box font-semibold" name="q" />
+                     <label for="search-box"><i class='bx bx-search-alt text-3xl font-bo search-icon' ></i></label>
+                     <input type="submit" id="search-submit" />
+                   </form>
+            </div>
+ 
+             <button id="showGenre" class="a top-5 right-6 px-1 md:px-3 lg:px-5 py-1 bg-rose-700 text-white font-bold rounded text-sm md:text-base lg:text-lg" onclick="scrollDown()">Recommend</button>
+        </div> -->
+     </header>
+    
+    <!-- <% if(info != null && info.length > 0){ %>
+            
+        <% info.forEach(function(ele){ %>
+            <div>
+                <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>">
+                    <img src="<%= ele.imageLink  %>" alt="Picture">
+                    <h1>Title: <%= ele.title %></h1>
+                </a>
+               
+            </div>
+            <a href="#" class="delete" data-id="<%= ele._id %>"> delete</a>
+        <% }) %>
+        
+    <% } %> -->
+
+    <div class="movies absolute top-[6vh] md:top-[8vh] lg:top-[8vh]">
+
+        <h1 class="text-rose-600 text-base md:text-lg lg:text-xl font-bold ml-8 md:ml-10 lg:ml-11"><span class="">My</span> Watchlist</h1>
+       
+       <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+         <% if(info != null && info.length > 0){ %>
+    
+          
+                
+              <% info.forEach(function(ele){ %>
+                  <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]" id="cont">
+                    <a href="/delete" class="delete absolute ml-[7.5rem] md:ml-[30%] lg:ml-[18%] z-10" data-id="<%= ele._id %>"><i class="fa-regular fa-circle-xmark text-rose-700 font-semibold text-4xl md:text-4xl lg:text-5xl bg-black rounded-[50%]"></i></a>
+
+                          <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>">
+        
+                              <img class="image ease-in-out hover:grayscale hover:blur-[2px] mt-2" src="<%= ele.imageLink %>" alt="">
+                              <h2 class="mt-2 font-bold text-xl text-center max-w-[85%]"><%= ele.title %></h2>
+                          </a>
+                          
+                  </div>
+              <% }) %>
+         
+          <% } %>
+    
+       </div>
+    
+       </div>
+
+    <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    const postLinks = document.querySelectorAll(".post-link");
+    const deleteLinks = document.querySelectorAll(".delete");
+
+    postLinks.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default action (navigation)
+
+            const title = link.getAttribute("data-title");
+            const pictureUrl = link.getAttribute("data-picture");
+
+            // Prepare the data object to send in the POST request
+            const data = {
+                title: title,
+                picture_url: pictureUrl
+            };
+
+            // Create a hidden form element
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/show'; // Replace with your endpoint URL
+
+            // Create a hidden input field for each data attribute
+            Object.keys(data).forEach(function(key) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            });
+
+            // Append the form to the document body and submit it
+            document.body.appendChild(form);
+            form.submit();
+       
+        });
+    });
+
+    deleteLinks.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default action (navigation)
+
+            const id = link.getAttribute("data-id");
+
+            // Prepare the data object to send in the POST request
+            const data = {
+                id: id
+            };
+
+            // Create a hidden form element
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/delete'; // Replace with your endpoint URL
+
+            // Create a hidden input field for each data attribute
+            Object.keys(data).forEach(function(key) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            });
+
+            // Append the form to the document body and submit it
+            document.body.appendChild(form);
+            form.submit();
+       
+        });
+    });
+});
+
+
+    </script>
+   
+</body>
+</html>

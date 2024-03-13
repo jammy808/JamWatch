@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Images</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-extrabold">
+
+    <style>
+        #imagebox{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .ved{
+            max-width: 400px;
+            max-height: 500px;
+            margin: 10px;
+            border-radius: 2%;
+        }
+        .column {
+    float: left;
+    width: 33.33%;
+}
+
+    </style>
+    <h1 class="text-center text-3xl m-5">Shows <span class="bg-yellow-500 rounded p-1 text-black">Hub</span></h1>
+    <hr>
+    <div class=" flex items-center justify-center">
+
+        <div>
+            <div class="block m-5">
+                <form action="">
+                    <div class="column" id="column1">
+                        <input type="radio" value="action"> Action <br>
+                        <input type="radio" value="sci-fi"> Sci-Fi <br>
+                        <input type="radio" value="sport"> Sport <br>
+                        <input type="radio" value="war"> War <br>
+                        <input type="radio" value="comedy"> Comedy <br>
+                        <input type="radio" value="thriller"> Thriller <br>
+                        <input type="radio" value="drama"> Drama <br>
+                    </div>
+                    
+                    <div class="column" id="column2">
+                        <input type="radio" value="family"> Family <br>
+                        <input type="radio" value="fantasy"> Fantasy <br>
+                        <input type="radio" value="film-noir"> Film-Noir <br>
+                        <input type="radio" value="history"> History <br>
+                        <input type="radio" value="horror"> Horror <br>
+                        <input type="radio" value="music"> Music <br>
+                        <input type="radio" value="musical"> Musical <br>
+                    </div>
+                    
+                    <div class="column" id="column3">
+                        <input type="radio" value="mystery"> Mystery <br>
+                        <input type="radio" value="romance"> Romance <br>
+                        <input type="radio" value="adventure">Adventure <br>
+                        <input type="radio" value="animation">Animation <br>
+                        <input type="radio" value="biography">Biography <br>
+                        <input type="radio" value="western"> Western <br>
+                    </div>
+                </form>
+            </div>
+
+            <button id="btn" onclick="genreSearch()" class="w-full text-black bg-yellow-500 rounded p-1 mb-3">Find Show</button>
+
+            <div class="flex gap-3 items-center m-5">
+                <form method="post" action="/showsSearch">
+                    <input type="text" placeholder="Search" class="text-black" id="search" name="title">
+                    <button  type="submit" class=" text-black bg-yellow-500 rounded p-1 ">Search</button>
+                </form>
+            </div>
+        </div>
+        
+
+    </div>
+    <hr>
+    
+    <div id="imageBox" class="mt-5">
+
+        <% if(t == 1){ %>
+
+            <% if(info != null && info.length > 0){ %>
+            
+                <% info.forEach(function(ele){ %>
+                    <%if(ele){ %>
+                        <div>
+                            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.url %>">
+                               
+    
+                                <img src="<%= ele.url %>" alt="">
+                                <h2><%= ele.title %></h2>
+                            </a>
+                    </div>
+                    <% } %>
+                <% }) %>
+                
+            <% } %>
+    
+
+        <% }else{ %>
+
+            <% if(data != null && data.length > 0){ %>
+            
+                <% data.forEach(function(ele){ %>
+                    <div>
+                            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageurl %>">
+                               
+    
+                                <img src="<%= ele.imageurl %>" alt="">
+                                <h2><%= ele.title %></h2>
+                            </a>
+                    </div>
+                <% }) %>
+    
+            <% } %>
+    
+
+        <% } %>   
+
+
+
+    </div>
+  
+
+    <script>
+       
+       document.addEventListener("DOMContentLoaded", function() {
+    const postLinks = document.querySelectorAll(".post-link");
+
+    postLinks.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default action (navigation)
+
+            const title = link.getAttribute("data-title");
+            const pictureUrl = link.getAttribute("data-picture");
+
+            // Prepare the data object to send in the POST request
+            const data = {
+                title: title,
+                picture_url: pictureUrl
+            };
+
+            // Create a hidden form element
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/show'; // Replace with your endpoint URL
+
+            // Create a hidden input field for each data attribute
+            Object.keys(data).forEach(function(key) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = data[key];
+                form.appendChild(input);
+            });
+
+            // Append the form to the document body and submit it
+            document.body.appendChild(form);
+            form.submit();
+       
+        });
+    });
+}); 
+
+
+        
+        const genreSearch = async() =>{
+            
+            var genres = document.querySelectorAll('input[type=radio]');
+            let genre = null;
+                genres.forEach(ele =>{
+                    if(ele.checked){
+                        genre = ele.value;
+                    }
+                })
+            
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/showsGenre';
+            const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = "genre";
+                input.value = genre;
+                form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();           
+
+            // const url = `https://ott-details.p.rapidapi.com/advancedsearch?min_imdb=7&max_imdb=10&genre=${genre}&language=english&type=show&sort=latest&page=1`;
+            // const options = {
+            //     method: 'GET',
+            //     headers: {
+            //         'X-RapidAPI-Key': '705b5aca63mshf454daf5bc4a7f5p1a6374jsn4a041afbac23',
+            //         'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
+            //     }
+            // };
+
+            // let response = await fetch(url,options);
+            // let data = await response.json();
+            // console.log(data);
+            // const arr = data.results;
+            
+            // arr.forEach(ele => {
+            //     const div = document.createElement("div");
+            //     const img = document.createElement("img");
+            //     const h1 = document.createElement("h2");
+
+            //     img.classList.add("ved");
+
+            //     h1.innerText = ele.title;
+            //     img.src =ele.imageurl;
+
+            //     div.appendChild(img);
+            //     div.appendChild(h1);
+
+            //     box.appendChild(div);
+            // });
+
+           
+
+        }
+
+        const titleSearch = async() =>{
+            while (box.firstChild) {
+                box.removeChild(box.firstChild);
+            }
+
+            const title = document.getElementById("search").value;
+
+            const url = `https://movies-tv-shows-database.p.rapidapi.com/?title=${title}`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    Type: 'get-shows-by-title',
+                    'X-RapidAPI-Key': '705b5aca63mshf454daf5bc4a7f5p1a6374jsn4a041afbac23',
+                    'X-RapidAPI-Host': 'movies-tv-shows-database.p.rapidapi.com'
+                }
+            };
+
+            let response = await fetch(url,options);
+            let data = await response.json();
+            console.log(data);
+            const arr = data.tv_results;
+
+            
+            const promises = [];
+            const maxRequestsPerSecond = 5; // Adjust this value based on the API's rate limit
+            let requestCounter = 0;
+
+            arr.forEach((ele, index) => {
+                let id = ele.imdb_id; 
+
+                const url = `https://imdb-com.p.rapidapi.com/title/details?tconst=${id}`;
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': '705b5aca63mshf454daf5bc4a7f5p1a6374jsn4a041afbac23',
+                        'X-RapidAPI-Host': 'imdb-com.p.rapidapi.com'
+                    }
+                };
+
+                const fetchPromise = () => {
+                    return fetch(url, options)
+                        .then(response => response.json())
+                        .then(res => {
+                            if (res.data && res.data.aboveTheFoldData.primaryImage && res.data.aboveTheFoldData.primaryImage.url){
+                            let man = {
+                                title: res.data.aboveTheFoldData.originalTitleText.text,
+                                url: res.data.aboveTheFoldData.primaryImage.url
+                            };
+                            return man;
+                            }
+                            else{
+                            return null;
+                            }
+                        });
+                };
+
+                const executeRequest = () => {
+                    requestCounter++;
+                    return fetchPromise().finally(() => {
+                        requestCounter--;
+                    });
+                };
+
+                promises.push(new Promise((resolve, reject) => {
+                    const delay = index * (1000 / maxRequestsPerSecond);
+                    setTimeout(() => {
+                        resolve(executeRequest());
+                    }, delay);
+                }));
+            });
+
+            Promise.all(promises).then(data => {
+                console.log(data);
+
+                data.forEach(ele => {
+                const div = document.createElement("div");
+                const img = document.createElement("img");
+                const h1 = document.createElement("h2");
+
+                if(ele){
+                    img.classList.add("ved");
+
+                h1.innerText = ele.title;
+                img.src =ele.url;
+
+                div.appendChild(img);
+                div.appendChild(h1);
+
+                box.appendChild(div);
+                }
+                });
+            });
+        }
+        
+    </script>
+</body>
+</html>

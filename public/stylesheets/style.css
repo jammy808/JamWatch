@@ -1,0 +1,98 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  letter-spacing: .11rem;
+}
+body{
+  overflow-x: hidden;
+}
+
+section{
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+}
+
+.image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: change 60s infinite ease-in-out;
+}
+.home::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,1) 100%);
+  
+}
+.content {
+  position: relative;
+  z-index: 2; 
+}
+
+@keyframes change{
+  0%
+  {
+      background-image: url("https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@.300_.jpg");
+  }
+  10%
+  {
+      background-image: url("https://m.media-amazon.com/images/I/81qv3rCbPwL.jpg");
+  }
+  20%
+  {
+      background-image: url("https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@.300_.jpg");
+  }
+  30%
+  {
+      background-image: url("https://rukminim2.flixcart.com/image/850/1000/l1whaq80/poster/7/t/4/small-poster-doctor-strange-digitalart-wall-poster-300gsm-matt-original-imagddyj8qfazuhz.jpeg?q=90&crop=false");
+  }
+  40%
+  {
+      background-image: url("https://staticg.sportskeeda.com/editor/2023/05/f3e6a-16830401394433-1920.jpg");
+  }
+  50%
+  {
+      background-image: url("https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX1000_.jpg");
+  }
+  60%
+  {
+      background-image: url("https://i0.wp.com/www.nerdsandbeyond.com/wp-content/uploads/2022/12/Fkd-cM0VEAAuKBS.jpeg?fit=800%2C1000&ssl=1");
+  }
+  70%
+  {
+      background-image: url("https://images-cdn.ubuy.co.in/634e74c96ef1ad5fba6df663-maze-runner-the-death-cure-movie-poster.jpg");
+  }
+  80%
+  {
+      background-image: url("https://pbs.twimg.com/media/FqnnG67XgAIZC3Z.jpg:large");
+  }
+  90%
+  {
+      background-image: url("https://image.tmdb.org/t/p/original/3yFHMtdhriig4sm1w8oMQfA2gFN.jpg");
+  }
+  100%
+  {
+      background-image: url("https://m.media-amazon.com/images/M/MV5BZTNiNDA4NmMtNTExNi00YmViLWJkMDAtMDAxNmRjY2I2NDVjXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg");
+  }
+  0%
+  {
+      background-image: url("https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@.300_.jpg");
+  }
+}

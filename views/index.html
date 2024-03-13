@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black">
+   <section class="home" id="image">
+
+    
+
+    <button class="absolute top-5 right-5 px-10 py-2 bg-rose-700 text-white font-bold rounded-xl hidden md:block lg:block">Login</button>
+
+    <div class="w-screen h-screen flex justify-center items-center gap-20">
+
+        <div>
+            <h1 class=" text-7xl md:text-8xl lg:text-9xl font-extrabold text-white"><span class="text-rose-700">Jam</span>Watch</h1>
+            <!-- <h1 class="text-white px-52 py-2 opacity-50">Find what do you want to Watch</h1> -->
+        </div>
+       
+        <div class="absolute bottom-12 md:bottom-44 lg:bottom-52 tex:lg md:text-xl lg:text-3xl">
+            <a href="/movie"><button class=" font-bold bg-blue- text-white px-1 md:px-4 lg:px-7 py-3 rounded-xl mx-1">Movie</button>
+            </a>
+            <a href="/tvShow"><button class=" font-bold bg-purple- text-white px-1 md:px-4 lg:px-7 py-3 rounded-xl mx-1">Web Series</button></a>
+            <a href="/anime"><button class="font-bold bg-blac text-white px-1 md:px-4 lg:px-7 py-3 rounded-xl mx-1">Anime</button></a>
+        </div>
+      
+    </div>
+
+   </section>
+
+   <section class="bg-black">
+    <h1>info bout the site</h1>
+   </section>
+
+   <style>
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  letter-spacing: .11rem;
+}
+
+
+section{
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+#image{
+ 
+  background-image: url("https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@.300_.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+   </style>
+
+
+
+    <!-- <% if(t == 1){ %>
+
+        <form method="post" action="/register">
+            <input type="text" placeholder="name" name="username">
+            <input type="password" placeholder="password" name="password">
+            <button type="submit">Register</button>
+        </form>
+        <br>
+          <form method="post" action="/login">
+            <input type="text" placeholder="name" name="username">
+            <input type="password" placeholder="password" name="password">
+            <button type="submit">Login</button>
+        </form>
+
+    <% }else{ %>
+
+        <a href="/list"> My List</a>
+
+    <% } %>    -->
+
+
+</body>
+</html>

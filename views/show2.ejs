@@ -1,13 +1,14 @@
+<!-- show.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/719584d9c7.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./stylesheets/list.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./stylesheets/show.css">
+    <title>Show Data</title>
 </head>
 <body class="bg-black">
 
@@ -48,93 +49,31 @@
              <button id="showGenre" class="a top-5 right-6 px-1 md:px-3 lg:px-5 py-1 bg-rose-700 text-white font-bold rounded text-sm md:text-base lg:text-lg" onclick="scrollDown()">Recommend</button>
         </div> -->
      </header>
-    
-    <!-- <% if(info != null && info.length > 0){ %>
-            
-        <% info.forEach(function(ele){ %>
-            <div>
-                <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>">
-                    <img src="<%= ele.imageLink  %>" alt="Picture">
-                    <h1>Title: <%= ele.title %></h1>
-                </a>
-               
-            </div>
-            <a href="#" class="delete" data-id="<%= ele._id %>"> delete</a>
-        <% }) %>
-        
-    <% } %> -->
 
-    <div class="movies absolute top-[6vh] md:top-[8vh] lg:top-[8vh]">
 
-        <h1 class="text-rose-600 text-base md:text-lg lg:text-xl font-bold ml-8 md:ml-10 lg:ml-11"><span class="">My</span> Watchlist</h1>
-       
-       <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
-         <% if(info != null && info.length > 0){ %>
     
-          
-                
-              <% info.forEach(function(ele){ %>
-                  <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]" id="cont">
-                    <a href="/delete" class="delete absolute ml-[7.5rem] md:ml-[30%] lg:ml-[18%] z-10" data-id="<%= ele._id %>"><i class="fa-regular fa-circle-xmark text-rose-700 font-semibold text-4xl md:text-4xl lg:text-5xl bg-black rounded-[50%]"></i></a>
-
-                          <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-id="<%= ele._id %>">
-        
-                              <img class="image ease-in-out hover:grayscale hover:blur-[2px] mt-2" src="<%= ele.imageLink %>" alt="">
-                              <h2 class="mt-2 font-bold text-xl text-center max-w-[85%]"><%= ele.title %></h2>
-                          </a>
-                          
-                  </div>
-              <% }) %>
-         
-          <% } %>
-    
-       </div>
-    
-       </div>
+    <div class="px-3 lg:px-10 mt-20 flex gap-5 text-white">
+        <div class="h-[270vh] md:h-[150vh] lg:h-[80vh] w-[250vh] md:w-[120vh] lg:w-[70vh]">
+            <img src="<%= info.pictureUrl %> "alt="Picture">
+        </div>
+        <div>
+            <h1 class="mb-3 md:mb-5 lg:mb-8 text-base md:text-4xl lg:text-6xl font-extrabold" style="line-height: .6;"><%= info.title %>  </h1>
+            <h2 class="mb-1 lg:mb-2 text-xs md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Type :</span> Movie</h2>
+            <p class="mb-1 tracking-tight lg:mb-2 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Plot Summary :</span> Pippa and Thomas move into their dream apartment, they notice that their windows look directly into the apartment opposite, this will set in motion a chain of events that will lead to disaster.</p>
+            <h2 class="mb-1 lg:mb-2 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Year :</span> 2023</h2>
+            <h2 class="mb-3 lg:mb-6 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Timeline :</span> 2h 4m</h2>
+            <a href="#" class="post-link text-center border-2 border-rose-700 bg-inherit px-1 md:px-3 lg:px-5 py-1 rounded-3xl text-[80%] md:text-sm lg:text-lg font-semibold text-rose-700 hover:bg-rose-700 hover:text-white ease-in-out duration-75"
+            data-id="<%= info.id %>">Remove</a>
+        </div>
+    </div>
 
     <script>
 
 document.addEventListener("DOMContentLoaded", function() {
+   
     const postLinks = document.querySelectorAll(".post-link");
-    const deleteLinks = document.querySelectorAll(".delete");
 
     postLinks.forEach(function(link) {
-        link.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent the default action (navigation)
-
-            const title = link.getAttribute("data-title");
-            const pictureUrl = link.getAttribute("data-picture");
-            const id = link.getAttribute("data-id");
-
-            // Prepare the data object to send in the POST request
-            const data = {
-                title: title,
-                picture_url: pictureUrl,
-                id: id
-            };
-
-            // Create a hidden form element
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/show2'; // Replace with your endpoint URL
-
-            // Create a hidden input field for each data attribute
-            Object.keys(data).forEach(function(key) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = data[key];
-                form.appendChild(input);
-            });
-
-            // Append the form to the document body and submit it
-            document.body.appendChild(form);
-            form.submit();
-       
-        });
-    });
-
-    deleteLinks.forEach(function(link) {
         link.addEventListener("click", function(event) {
             event.preventDefault(); // Prevent the default action (navigation)
 
@@ -169,6 +108,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     </script>
-   
 </body>
 </html>

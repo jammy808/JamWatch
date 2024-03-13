@@ -77,19 +77,6 @@ router.post('/animeSearch',async function(req,res,next){ // gets the anime data 
   res.render('anime',{info : arr, t : 1, data: null});
 })
 
-router.post('/show',function(req,res,next){ // display particular content on click
- 
-  const data = {
-    title : req.body.title,
-    pictureUrl : req.body.picture_url
-  }
-  console.log(req.body);
-
-  // Render the EJS template and pass the data as variables
-  res.render('showAnime', { info: data});
-  
-})
-
 router.post('/animeGenre',async function(req,res,next){ // gets the anime data based on the genres
   const genres = req.body.genres;
 
@@ -370,6 +357,33 @@ router.post('/delete',async function(req,res,next){ //displaying the watchlist
   console.log();
 
   res.redirect('/list');
+})
+
+router.post('/show',function(req,res,next){ // display particular content on click
+ 
+  const data = {
+    title : req.body.title,
+    pictureUrl : req.body.picture_url
+  }
+  console.log(req.body);
+
+  // Render the EJS template and pass the data as variables
+  res.render('showAnime', { info: data});
+  
+})
+
+router.post('/show2',function(req,res,next){ // display particular content on click
+ 
+  const data = {
+    title : req.body.title,
+    pictureUrl : req.body.picture_url,
+    id : req.body.id
+  }
+  console.log(req.body);
+
+  // Render the EJS template and pass the data as variables
+  res.render('show2', { info: data});
+  
 })
 
 

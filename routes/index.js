@@ -74,7 +74,9 @@ router.post('/animeSearch',async function(req,res,next){ // gets the anime data 
     console.log(data);
     const arr = data;
 
-  res.render('anime',{info : arr, t : 1, data: null});
+    const car = await carouselModel.find();
+
+  res.render('anime',{info : arr, t : 1, data: null , dam : car});
 })
 
 router.post('/animeGenre',async function(req,res,next){ // gets the anime data based on the genres
@@ -87,7 +89,9 @@ router.post('/animeGenre',async function(req,res,next){ // gets the anime data b
     console.log(data);
     const arr = data.data;
 
-    res.render('anime',{data : arr, t : 0});
+    const car = await carouselModel.find();
+
+    res.render('anime',{data : arr, t : 0, dam : car});
 
 })
 
@@ -116,12 +120,16 @@ router.post('/movieGenre',async function(req,res,next){ // gets the movie data b
   //console.log(data);
   const arr = data.movies;
 
-  res.render('movie',{data : arr ,t: 0});
+  const car = await carouselModel.find();
+
+  res.render('movie',{data : arr ,t: 0 , dam : car});
 })
 
 router.post('/movieSearch',async function(req,res,next){ // gets the movie dta based on search
   const title = req.body.title;
   console.log(title);
+
+  const car = await carouselModel.find();
 
   const url = `https://movies-tv-shows-database.p.rapidapi.com/?title=${title}`;
             const options = {
@@ -190,7 +198,8 @@ router.post('/movieSearch',async function(req,res,next){ // gets the movie dta b
 
             Promise.all(promises).then(data => {
                 console.log(data);
-                res.render('movie',{info : data, t :1});
+            
+                res.render('movie',{info : data, t :1 , dam : car});
             });
 
  
@@ -221,11 +230,15 @@ router.post('/showsGenre',async function(req,res,next){ // gets the shows data b
             console.log(data);
             const arr = data.results;
 
-  res.render('tvShow',{data : arr ,t: 0});
+  const car = await carouselModel.find();
+
+  res.render('tvShow',{data : arr ,t: 0 , dam : car});
 })
 
 router.post('/showsSearch',async function(req,res,next){
   const title = req.body.title;
+
+  const car = await carouselModel.find();
 
   const url = `https://movies-tv-shows-database.p.rapidapi.com/?title=${title}`;
             const options = {
@@ -293,7 +306,7 @@ router.post('/showsSearch',async function(req,res,next){
 
             Promise.all(promises).then(data => {
                 console.log(data);
-                res.render('tvShow',{info : data, t :1 ,data: null});
+                res.render('tvShow',{info : data, t :1 ,data: null , dam : car});
             });
        
 })
@@ -324,7 +337,7 @@ router.get('/demo',function(req,res,next){ //a fix for hiding list without login
 })
 
 
-router.post('/add',async function(req,res,next){ // adds the content to watchlist
+router.post('/add', isLoggedIn ,async function(req,res,next){ // adds the content to watchlist
 
   const Client = await clientModel.findOne({ username: req.session.passport.user });
   // console.log(req.body);

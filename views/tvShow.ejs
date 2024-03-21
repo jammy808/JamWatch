@@ -99,7 +99,7 @@
                  
             </form>
        
-            <button id="btn" class="text-white bg-rose-700 rounded p-1 mt-6 font-semibold" onclick="genreSearch()">Find Movie</button>
+            <button id="btn" class="text-white bg-rose-700 rounded p-1 mt-6 font-semibold" onclick="genreSearch()">Find Tv Shows</button>
         </div>
 
         
@@ -132,9 +132,7 @@
               <% info.forEach(function(ele){ %>
                 <%if(ele){ %>
                 <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
-                  <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.url %>">
-                     
-      
+                  <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.url %>" data-year="<%=ele.year%>" data-plot="<%=ele.plot%>" data-time="<%=ele.time%>">
                       <img src="<%= ele.url %>" alt="">
                       <h2 class="mt-2 font-bold text-xl"><%= ele.title %></h2>
                   </a>
@@ -151,7 +149,7 @@
           
               <% data.forEach(function(ele){ %>
                 <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
-                  <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageurl %>">
+                  <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageurl %>" data-year="<%=ele.released %>" data-plot="<%=ele.synopsis%>" data-time="Not Available">
                      
       
                       <img src="<%= ele.imageurl %>" alt="">

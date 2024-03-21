@@ -73,11 +73,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
           const title = link.getAttribute("data-title");
           const pictureUrl = link.getAttribute("data-picture");
+          const year = link.getAttribute("data-year");
+          const plot = link.getAttribute("data-plot");
+          const time = link.getAttribute("data-time");
 
           // Prepare the data object to send in the POST request
           const data = {
               title: title,
-              picture_url: pictureUrl
+              picture_url: pictureUrl,
+              year : year,
+              plot : plot,
+              time : time
           };
 
           // Create a hidden form element

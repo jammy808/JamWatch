@@ -53,15 +53,15 @@
 
     
     <div class="px-3 lg:px-10 mt-20 flex gap-5 text-white">
-        <div class="h-[270vh] md:h-[150vh] lg:h-[80vh] w-[250vh] md:w-[120vh] lg:w-[70vh]">
-            <img src="<%= info.pictureUrl %> "alt="Picture">
+        <div>
+            <img src="<%= info.pictureUrl %> "alt="Picture" class="h-[270vh] md:h-[150vh] lg:h-[80vh] w-[250vh] md:w-[120vh] lg:w-[70vh]">
         </div>
         <div>
             <h1 class="mb-3 md:mb-5 lg:mb-8 text-base md:text-4xl lg:text-6xl font-extrabold leading-loose" style="line-height: 1.2;"><%= info.title %>  </h1>
             <h2 class="mb-1 lg:mb-2 text-xs md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Type :</span> Movie</h2>
-            <p class="mb-1 tracking-tight lg:mb-2 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Plot Summary :</span> Pippa and Thomas move into their dream apartment, they notice that their windows look directly into the apartment opposite, this will set in motion a chain of events that will lead to disaster.</p>
-            <h2 class="mb-1 lg:mb-2 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Year :</span> 2023</h2>
-            <h2 class="mb-3 lg:mb-6 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Timeline :</span> 2h 4m</h2>
+            <p class="mb-1 tracking-tight lg:mb-2 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Plot Summary :</span> <%= info.plot %></p>
+            <h2 class="mb-1 lg:mb-2 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Released :</span> <%= info.year %></h2>
+            <h2 class="mb-3 lg:mb-6 text-[80%] md:text-sm lg:text-lg font-lg"><span class="font-semibold text-rose-700">Timeline : </span><%= info.time %></h2>
             <a href="#" class="post-link text-center border-2 border-rose-700 bg-inherit px-1 md:px-3 lg:px-5 py-1 rounded-3xl text-[80%] md:text-sm lg:text-lg font-semibold text-rose-700 hover:bg-rose-700 hover:text-white ease-in-out duration-75"
             data-title="<%= info.title %>" data-picture="<%= info.pictureUrl %>">Add to List</a>
         </div>

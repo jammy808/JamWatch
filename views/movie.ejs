@@ -134,14 +134,15 @@
     <% if(info != null && info.length > 0){ %>
     
         <% info.forEach(function(ele){ %>
+          <%if(ele){ %>
           <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
-            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.url %>">
-               
-
+            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.url %>" data-year="<%=ele.year%>" data-plot="<%=ele.plot%>" data-time="<%=ele.time%>">
+        
                 <img src="<%= ele.url %>" alt="">
                 <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
             </a>
          </div>
+         <% } %>
         <% }) %>
         
     <% } %>
@@ -153,7 +154,7 @@
     
         <% data.forEach(function(ele){ %>
           <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
-            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.posterImage %>">
+            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.posterImage %>" data-year="<%=ele.year%>" data-plot="<%=ele.plot%>" data-time="<%=ele.timeline%>">
                
 
                 <img src="<%= ele.posterImage %>" alt="">

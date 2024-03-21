@@ -168,10 +168,14 @@ router.post('/movieSearch',async function(req,res,next){ // gets the movie dta b
                     return fetch(url, options)
                         .then(response => response.json())
                         .then(res => {
-                            if (res.data && res.data.aboveTheFoldData.primaryImage && res.data.aboveTheFoldData.primaryImage.url){
+                          console.log(res);
+                            if (res.data && res.data.aboveTheFoldData.primaryImage && res.data.aboveTheFoldData.primaryImage.url && res.data.aboveTheFoldData.plot && res.data.aboveTheFoldData.runtime){
                             let man = {
                                 title: res.data.aboveTheFoldData.originalTitleText.text,
-                                url: res.data.aboveTheFoldData.primaryImage.url
+                                url: res.data.aboveTheFoldData.primaryImage.url,
+                                plot: res.data.aboveTheFoldData.plot.plotText.plainText,
+                                year: res.data.aboveTheFoldData.releaseYear.year,
+                                time: res.data.aboveTheFoldData.runtime.displayableProperty.value.plainText
                             };
                             return man;
                             }
@@ -276,10 +280,13 @@ router.post('/showsSearch',async function(req,res,next){
                     return fetch(url, options)
                         .then(response => response.json())
                         .then(res => {
-                            if (res.data && res.data.aboveTheFoldData.primaryImage && res.data.aboveTheFoldData.primaryImage.url){
+                          if (res.data && res.data.aboveTheFoldData.primaryImage && res.data.aboveTheFoldData.primaryImage.url && res.data.aboveTheFoldData.plot && res.data.aboveTheFoldData.runtime){
                             let man = {
                                 title: res.data.aboveTheFoldData.originalTitleText.text,
-                                url: res.data.aboveTheFoldData.primaryImage.url
+                                url: res.data.aboveTheFoldData.primaryImage.url,
+                                plot: res.data.aboveTheFoldData.plot.plotText.plainText,
+                                year: res.data.aboveTheFoldData.releaseYear.year,
+                                time: res.data.aboveTheFoldData.runtime.displayableProperty.value.plainText
                             };
                             return man;
                             }
@@ -376,7 +383,11 @@ router.post('/show',function(req,res,next){ // display particular content on cli
  
   const data = {
     title : req.body.title,
-    pictureUrl : req.body.picture_url
+    pictureUrl : req.body.picture_url,
+    year :  req.body.year,
+    plot :  req.body.plot,
+    rate :  req.body.rate,
+    time :  req.body.time
   }
   console.log(req.body);
 

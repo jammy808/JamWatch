@@ -126,7 +126,27 @@
    
   <div class="movies absolute top-[60vh] md:top-[70vh] lg:top-[85vh]">
 
-  <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Movies</h1>
+    <% if(info == null && data == null){ %>
+      <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Movies</h1>
+
+      <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+        <% dam.forEach(function(ele){ %>
+          <% if(ele.type == "Movie"){ %>
+          <div class="md:ml-6 lg:ml-6 p-1 text-white mb-14">
+            <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
+                <img src="<%= ele.imageLink %>" alt="" class="h-[76%] lg:h-[100%] w-[100%]">
+                <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
+            </a>
+         </div>
+         <% } %>
+        <% }) %>
+      </div>
+
+      <% } %>
+
+      <% if(search != null){ %>
+      <h1 class="text-rose-600 text-xl font-bold p-4 ml-4">Results for "<%=search%>"</h1>
+      <% } %>
     
   <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
   <% if(t == 1){ %>

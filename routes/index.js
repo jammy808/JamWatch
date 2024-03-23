@@ -100,7 +100,7 @@ router.post('/animeGenre',async function(req,res,next){ // gets the anime data b
 
 router.get('/movie',async function(req,res,next){ // gets the movie page
   const car = await carouselModel.find();
-  res.render('movie',{data : null, t : 0, dam : car});
+  res.render('movie',{info : null, data : null, t : 0, dam : car , search : null});
 })
 
 router.post('/movieGenre',async function(req,res,next){ // gets the movie data based on genre
@@ -122,7 +122,7 @@ router.post('/movieGenre',async function(req,res,next){ // gets the movie data b
 
   const car = await carouselModel.find();
 
-  res.render('movie',{data : arr ,t: 0 , dam : car});
+  res.render('movie',{info : null, data : arr ,t: 0 , dam : car , search : genre});
 })
 
 router.post('/movieSearch',async function(req,res,next){ // gets the movie dta based on search
@@ -203,7 +203,7 @@ router.post('/movieSearch',async function(req,res,next){ // gets the movie dta b
             Promise.all(promises).then(data => {
                 console.log(data);
             
-                res.render('movie',{info : data, t :1 , dam : car});
+                res.render('movie',{info : data, data : null ,t :1 , dam : car , search : title});
             });
 
  

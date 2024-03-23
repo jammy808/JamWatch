@@ -120,7 +120,7 @@
         <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Animes</h1>
 
         <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
-          <% dam.forEach(function(ele){ %>
+          <% tops.forEach(function(ele){ %>
             <% if(ele.type == "Anime"){ %>
             <div class="md:ml-6 lg:ml-6 p-1 text-white mb-14">
               <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">

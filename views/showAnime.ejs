@@ -8,6 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./stylesheets/show.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <title>Show Data</title>
 </head>
 <body class="bg-black">
@@ -53,8 +57,8 @@
 
     
     <div class="px-3 lg:px-10 mt-20 flex gap-5 text-white">
-        <div>
-            <img src="<%= info.pictureUrl %> "alt="Picture" class="h-[270vh] md:h-[150vh] lg:h-[80vh] w-[250vh] md:w-[120vh] lg:w-[70vh]">
+        <div class="h-[50vh] md:h-[80vh] lg:h-[80vh] w-[149vh] md:w-[70vh] lg:w-[70vh]">
+            <img src="<%= info.pictureUrl %> "alt="Picture" class="max-w-44 md:max-w-72 lg:max-w-96 h-full">
         </div>
         <div>
             <h1 class="mb-3 md:mb-5 lg:mb-8 text-base md:text-4xl lg:text-6xl font-extrabold leading-loose" style="line-height: 1.2;"><%= info.title %>  </h1>
@@ -65,6 +69,20 @@
             <a href="#" class="post-link text-center border-2 border-rose-700 bg-inherit px-1 md:px-3 lg:px-5 py-1 rounded-3xl text-[80%] md:text-sm lg:text-lg font-semibold text-rose-700 hover:bg-rose-700 hover:text-white ease-in-out duration-75"
             data-title="<%= info.title %>" data-picture="<%= info.pictureUrl %>">Add to List</a>
         </div>
+    </div>
+
+
+    <div class="mt-16 w-screen">
+        <div class="owl-carousel" id="owl">
+            <% tops.forEach(function(ele){ %>
+                <div class="ml-1 p-1 text-white mb-4">
+                    <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
+                        <img src="<%= ele.imageLink %>" alt="" class="md:h-[27rem] lg:h-[33rem] w-[100%]">
+                        <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
+                    </a>
+                 </div>
+            <% }) %>
+          </div>
     </div>
 
     <script>
@@ -108,6 +126,23 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+    $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({ 
+      nav: true,
+      responsive:{
+        0:{
+          items:2
+        },
+        600:{
+          items:3
+        },
+        1000:{
+          items:4
+        }
+      }
+    });
+  });
 
     </script>
 </body>

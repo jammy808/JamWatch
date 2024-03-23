@@ -100,7 +100,8 @@ router.post('/animeGenre',async function(req,res,next){ // gets the anime data b
 
 router.get('/movie',async function(req,res,next){ // gets the movie page
   const car = await carouselModel.find();
-  res.render('movie',{info : null, data : null, t : 0, dam : car , search : null});
+  const tops = await topModel.find();
+  res.render('movie',{info : null, data : null, t : 0, dam : car , search : null ,tops});
 })
 
 router.post('/movieGenre',async function(req,res,next){ // gets the movie data based on genre
@@ -379,7 +380,7 @@ router.post('/delete',async function(req,res,next){ //displaying the watchlist
   res.redirect('/list');
 })
 
-router.post('/show',function(req,res,next){ // display particular content on click
+router.post('/show',async function(req,res,next){ // display particular content on click
  
   const data = {
     title : req.body.title,
@@ -390,9 +391,9 @@ router.post('/show',function(req,res,next){ // display particular content on cli
     time :  req.body.time
   }
   console.log(req.body);
-
-  // Render the EJS template and pass the data as variables
-  res.render('showAnime', { info: data});
+  const tops = await topModel.find();
+  
+  res.render('showAnime', {tops, info: data});
   
 })
 

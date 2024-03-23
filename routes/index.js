@@ -52,7 +52,7 @@ router.get('/hi',async function(req, res, next) {
 
 router.get('/anime',async function(req,res,next){ // gets the anime page 
   const car = await carouselModel.find();
-  res.render('anime',{info : null,t:1,data : null, dam : car});
+  res.render('anime',{info : null,t:1,data : null, dam : car , search : null});
 })
 
 router.post('/animeSearch',async function(req,res,next){ // gets the anime data based on the search
@@ -76,7 +76,7 @@ router.post('/animeSearch',async function(req,res,next){ // gets the anime data 
 
     const car = await carouselModel.find();
 
-  res.render('anime',{info : arr, t : 1, data: null , dam : car});
+  res.render('anime',{info : arr, t : 1, data: null , dam : car, search : title});
 })
 
 router.post('/animeGenre',async function(req,res,next){ // gets the anime data based on the genres
@@ -91,7 +91,7 @@ router.post('/animeGenre',async function(req,res,next){ // gets the anime data b
 
     const car = await carouselModel.find();
 
-    res.render('anime',{data : arr, t : 0, dam : car});
+    res.render('anime',{info : null,data : arr, t : 0, dam : car, search : genres});
 
 })
 

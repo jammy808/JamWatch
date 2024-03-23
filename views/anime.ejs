@@ -80,16 +80,17 @@
                 <input type="checkbox" value="ecchi"> Ecchi<br>
                 <input type="checkbox" value="harem"> Harem <br>
             </div>
+            
             <div class="column">
-                <input type="checkbox" value="adventure">Adventure<br>
+                <input type="checkbox" value="high-school"> School<br>
                 <input type="checkbox" value="sports"> Sports <br>
                 <input type="checkbox" value="mystery"> Mystery<br>
             </div>
-            <div class="column">
+            
                 <input type="checkbox" value="slice-of-life"> Slice Of Life<br>
                 <input type="checkbox" value="martial-arts"> Martial Arts<br>
-                <input type="checkbox" value="high-school"> School<br>
-            </div>
+                <input type="checkbox" value="adventure">Adventure<br>
+            
             </form>
             <button id="btn" onclick="genreSearch()" class="text-white bg-rose-700 rounded p-1 mt-6 font-semibold">Find Anime</button>
         </div>
@@ -115,7 +116,28 @@
 
     <div class="movies absolute top-[60vh] md:top-[70vh] lg:top-[85vh]">
 
-        <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Movies</h1>
+      <% if(info == null && data == null){ %>
+        <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Animes</h1>
+
+        <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+          <% dam.forEach(function(ele){ %>
+            <% if(ele.type == "Anime"){ %>
+            <div class="md:ml-6 lg:ml-6 p-1 text-white mb-14">
+              <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
+                  <img src="<%= ele.imageLink %>" alt="" class="h-[76%] lg:h-[100%] w-[100%]">
+                  <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
+              </a>
+           </div>
+           <% } %>
+          <% }) %>
+        </div>
+
+        <% } %>
+
+        <% if(search != null){ %>
+        <h1 class="text-rose-600 text-xl font-bold p-4 ml-4">Results for "<%=search%>"</h1>
+        <% } %>
+
           
         <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
         <% if(t == 1){ %>
@@ -143,7 +165,7 @@
           <% if(data != null && data.length > 0){ %>
           
               <% data.forEach(function(ele){ %>
-                <div class="md:ml-6 lg:ml-6 p-1 text-white mt-14">
+                <div class="md:ml-6 lg:ml-6 p-1 text-white mb-14">
                   <a href="#" class="post-link" data-title="<%= ele.attributes.titles.en %>" data-picture="<%= ele.attributes.posterImage.original %>" data-year="<%=ele.attributes.startDate%>" data-plot="<%=ele.attributes.synopsis%>" data-time="23 min/ep">
                       <img src="<%= ele.attributes.posterImage.original %>" alt="" class="h-[76%] lg:h-[100%] w-[100%]">
                       <h2 class="mt-2 font-bold text-xl text-center"><%= ele.attributes.titles.en %></h2>

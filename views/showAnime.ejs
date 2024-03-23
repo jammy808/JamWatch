@@ -71,20 +71,41 @@
         </div>
     </div>
 
+    <div id="extras">
+      <h1 class="text-rose-600 text-xl font-bold pt-16 ml-4">Top Content </h1>
 
-    <div class="mt-16 w-screen">
+      <div class="mt-2 w-screen">
         <div class="owl-carousel" id="owl">
-            <% tops.forEach(function(ele){ %>
-                <div class="ml-1 p-1 text-white mb-4">
+            <% tops.forEach(function(ele,idx){ %>
+              <% if(idx < 4 ){ %>
+                <div class="ml-1 p-1 text-white">
                     <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
                         <img src="<%= ele.imageLink %>" alt="" class="md:h-[27rem] lg:h-[33rem] w-[100%]">
                         <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
                     </a>
                  </div>
+              <% } %>
             <% }) %>
           </div>
     </div>
 
+    <div class="w-screen">
+      <div class="owl-carousel" id="owl">
+          <% tops.forEach(function(ele,idx){ %>
+            <% if(idx >= 4 ){ %>
+              <div class="ml-1 p-1 text-white mb-4">
+                  <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
+                      <img src="<%= ele.imageLink %>" alt="" class="md:h-[27rem] lg:h-[33rem] w-[100%]">
+                      <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
+                  </a>
+               </div>
+            <% } %>
+          <% }) %>
+        </div>
+  </div>
+
+    </div>
+    
     <script>
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -129,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     $(document).ready(function(){
     $('.owl-carousel').owlCarousel({ 
-      nav: true,
       responsive:{
         0:{
           items:2

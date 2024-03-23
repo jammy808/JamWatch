@@ -207,7 +207,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     margin-top: -9px;
 }
 
-#owl{
+#extras{
     position: absolute;
     z-index: -1;
 }

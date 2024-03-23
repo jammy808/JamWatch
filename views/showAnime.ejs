@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="./javascripts/show.js" defer></script>
     <title>Show Data</title>
 </head>
 <body class="bg-black">
@@ -79,7 +80,7 @@
             <% tops.forEach(function(ele,idx){ %>
               <% if(idx < 4 ){ %>
                 <div class="ml-1 p-1 text-white">
-                    <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
+                    <a href="#" class="post" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
                         <img src="<%= ele.imageLink %>" alt="" class="md:h-[27rem] lg:h-[33rem] w-[100%]">
                         <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
                     </a>
@@ -94,7 +95,7 @@
           <% tops.forEach(function(ele,idx){ %>
             <% if(idx >= 4 ){ %>
               <div class="ml-1 p-1 text-white mb-4">
-                  <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
+                  <a href="#" class="post" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
                       <img src="<%= ele.imageLink %>" alt="" class="md:h-[27rem] lg:h-[33rem] w-[100%]">
                       <h2 class="mt-2 font-bold text-xl text-center"><%= ele.title %></h2>
                   </a>
@@ -108,61 +109,6 @@
     
     <script>
 
-document.addEventListener("DOMContentLoaded", function() {
-   
-    const postLinks = document.querySelectorAll(".post-link");
-
-    postLinks.forEach(function(link) {
-        link.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent the default action (navigation)
-
-            const title = link.getAttribute("data-title");
-            const pictureUrl = link.getAttribute("data-picture");
-
-            // Prepare the data object to send in the POST request
-            const data = {
-                title: title,
-                picture_url: pictureUrl
-            };
-
-            // Create a hidden form element
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/add'; // Replace with your endpoint URL
-
-            // Create a hidden input field for each data attribute
-            Object.keys(data).forEach(function(key) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = data[key];
-                form.appendChild(input);
-            });
-
-            // Append the form to the document body and submit it
-            document.body.appendChild(form);
-            form.submit();
-       
-        });
-    });
-});
-
-
-    $(document).ready(function(){
-    $('.owl-carousel').owlCarousel({ 
-      responsive:{
-        0:{
-          items:2
-        },
-        600:{
-          items:3
-        },
-        1000:{
-          items:4
-        }
-      }
-    });
-  });
 
     </script>
 </body>

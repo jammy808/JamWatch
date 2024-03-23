@@ -214,7 +214,7 @@ router.post('/movieSearch',async function(req,res,next){ // gets the movie dta b
 
 router.get('/tvShow',async function(req,res,next){ // gets the tv shows page
   const car = await carouselModel.find();
-  res.render('tvShow',{info : null, t: 1, dam : car});
+  res.render('tvShow',{info : null,data : null, t: 1, dam : car, search : null});
 })
 
 router.post('/showsGenre',async function(req,res,next){ // gets the shows data based on genre
@@ -236,7 +236,7 @@ router.post('/showsGenre',async function(req,res,next){ // gets the shows data b
 
   const car = await carouselModel.find();
 
-  res.render('tvShow',{data : arr ,t: 0 , dam : car});
+  res.render('tvShow',{info : null,data : arr ,t: 0 , dam : car , search : genre});
 })
 
 router.post('/showsSearch',async function(req,res,next){
@@ -313,7 +313,7 @@ router.post('/showsSearch',async function(req,res,next){
 
             Promise.all(promises).then(data => {
                 console.log(data);
-                res.render('tvShow',{info : data, t :1 ,data: null , dam : car});
+                res.render('tvShow',{info : data, t :1 ,data: null , dam : car, search : title});
             });
        
 })

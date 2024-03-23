@@ -103,18 +103,22 @@
 
         
         <% if(dam != null && dam.length > 0){ %>
-            <div class="owl-carousel" id="owl">
-              <% dam.forEach(function(ele){ %>
-                <div class="text-white w-screen h-[55vh] md:h-[65vh] lg:h-[80vh]" style="background-image: url('<%= ele.imageLink %>');background-size: cover; background-position:center;background-repeat: no-repeat;">
-                  <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black opacity-100 w-full"></div>
-                  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-100 w-full"></div>
-                  <h2 class="mt-2 font-extrabold text-xl md:text-3xl lg:text-5xl text-center absolute z-20 left-[3%] top-[70%]"><%= ele.title %></h2>
-                  <p class="absolute z-20 left-[3%] top-[80%]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus,<br> quisquam mollitia ad iure magnam aliquam dignissimos</p>
-                  <a href="#" class="post-link absolute z-20 text-center bg-rose-700 px-5 py-1 rounded-3xl top-[89%] left-[3%] font-semibold lg:font-bold" data-title="<%= ele.title %>" data-picture="<%= ele.posterImage %>">Visit</a>
+          <div class="owl-carousel" id="owl">
+            <% dam.forEach(function(ele){ %>
+              <div class="text-white w-screen h-[55vh] md:h-[65vh] lg:h-[80vh]" style="background-image: url('<%= ele.imageLink %>');background-size: cover; background-position:center;background-repeat: no-repeat;">
+                <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black opacity-100 w-full"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-100 w-full"></div>
+                <h2 class="mt-2 font-extrabold text-xl md:text-3xl lg:text-5xl text-center absolute z-20 left-[3%] top-[70%]"><%= ele.title %></h2>
+
+                <div class="absolute z-20 left-[3%] top-[80%]">
+                  <p class="mb-4 w-[60%]"><%=ele.plot%></p>
+                  <a href="#" class="post-link text-center bg-rose-700 px-5 py-1 rounded-3xl font-semibold lg:font-bold" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">Visit</a>
                 </div>
-              <% }) %>
-            </div>
-          <% } %>
+
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
          
     </section>
 

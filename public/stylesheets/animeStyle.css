@@ -254,3 +254,20 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transform: rotate(-135deg);
     margin-top: -9px;
 }
+
+
+.animate {
+    opacity: 0;
+    transform: translateY(20px); /* Initial position */
+  }
+
+@keyframes fadeAndTranslate {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

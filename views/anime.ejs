@@ -123,7 +123,7 @@
       <% if(info == null && data == null){ %>
         <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Animes</h1>
 
-        <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+        <div class="animate grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
           <% tops.forEach(function(ele){ %>
             <% if(ele.type == "Anime"){ %>
             <div class="md:ml-6 lg:ml-6 p-1 text-white mb-14">
@@ -150,7 +150,7 @@
           
               <% info.forEach(function(ele){ %>
                 <% if(ele != null){ %>
-                  <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
+                  <div class="animate ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
                       <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.picture_url %>" data-year="Not Available" data-plot="<%=ele.description %>" data-time="23 min/ep">
                          
           
@@ -169,7 +169,7 @@
           <% if(data != null && data.length > 0){ %>
           
               <% data.forEach(function(ele){ %>
-                <div class="md:ml-6 lg:ml-6 p-1 text-white mb-14">
+                <div class="animate md:ml-6 lg:ml-6 p-1 text-white mb-14">
                   <a href="#" class="post-link" data-title="<%= ele.attributes.titles.en %>" data-picture="<%= ele.attributes.posterImage.original %>" data-year="<%=ele.attributes.startDate%>" data-plot="<%=ele.attributes.synopsis%>" data-time="23 min/ep">
                       <img src="<%= ele.attributes.posterImage.original %>" alt="" class="h-[76%] lg:h-[100%] w-[100%]">
                       <h2 class="mt-2 font-bold text-xl text-center"><%= ele.attributes.titles.en %></h2>

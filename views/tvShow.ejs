@@ -128,7 +128,7 @@
         <% if(info == null && data == null){ %>
             <h1 class="text-rose-600 text-xl font-bold p-4"><span class="">Top</span> Tv Shows</h1>
     
-            <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
+            <div class="animate grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
               <% tops.forEach(function(ele){ %>
                 <% if(ele.type == "TvShow"){ %>
                 <div class="md:ml-6 lg:ml-6 p-1 text-white mb-14">
@@ -154,7 +154,7 @@
 
               <% info.forEach(function(ele){ %>
                 <%if(ele){ %>
-                <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
+                <div class="animate ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
                   <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.url %>" data-year="<%=ele.year%>" data-plot="<%=ele.plot%>" data-time="<%=ele.time%>">
                       <img src="<%= ele.url %>" alt="">
                       <h2 class="mt-2 font-bold text-xl"><%= ele.title %></h2>
@@ -171,7 +171,7 @@
           <% if(data != null && data.length > 0){ %>
           
               <% data.forEach(function(ele){ %>
-                <div class="ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
+                <div class="animate ml-4 md:ml-6 lg:ml-6 mb-4 p-1 text-white h-[100%] w-[85%]">
                   <a href="#" class="post-link" data-title="<%= ele.title %>" data-picture="<%= ele.imageurl %>" data-year="<%=ele.released %>" data-plot="<%=ele.synopsis%>" data-time="Not Available">
                      
       

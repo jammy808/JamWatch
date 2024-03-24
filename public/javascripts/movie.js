@@ -107,3 +107,13 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  var animatedDivs = document.querySelectorAll(".animate");
+
+  animatedDivs.forEach(function(div, index) {
+      // Add animation delay dynamically
+      div.style.animation = "fadeAndTranslate 0.4s ease forwards";
+      div.style.animationDelay = (index * 0.5) + "s";
+  });
+});

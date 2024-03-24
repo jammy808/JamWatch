@@ -366,7 +366,7 @@ router.post('/add', isLoggedIn ,async function(req,res,next){ // adds the conten
 })
 
 router.get('/list', isLoggedIn ,async function(req,res,next){ //displaying the watchlist
-  const Client = await clientModel.findOne({username : 'a'}).populate('content'); 
+  const Client = await clientModel.findOne({username: req.session.passport.user}).populate('content'); 
   console.log(Client.content);
 
   res.render('list',{info : Client.content});

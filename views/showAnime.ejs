@@ -78,7 +78,7 @@
       <div class="mt-2 w-screen">
         <div class="owl-carousel" id="owl">
             <% tops.forEach(function(ele,idx){ %>
-              <% if(idx < 4 ){ %>
+              <% if(idx < 10 ){ %>
                 <div class="ml-1 p-1 text-white">
                     <a href="#" class="post" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
                         <img src="<%= ele.imageLink %>" alt="" class="md:h-[27rem] lg:h-[33rem] w-[100%]">
@@ -93,7 +93,7 @@
     <div class="w-screen">
       <div class="owl-carousel" id="owl">
           <% tops.forEach(function(ele,idx){ %>
-            <% if(idx >= 4 ){ %>
+            <% if(idx >= 10 ){ %>
               <div class="ml-1 p-1 text-white mb-4">
                   <a href="#" class="post" data-title="<%= ele.title %>" data-picture="<%= ele.imageLink %>" data-year="<%=ele.year %>" data-plot="<%=ele.plot %>" data-time="<%=ele.time %>">
                       <img src="<%= ele.imageLink %>" alt="" class="md:h-[27rem] lg:h-[33rem] w-[100%]">

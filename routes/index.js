@@ -63,7 +63,7 @@ router.post('/animeSearch',async function(req,res,next){ // gets the anime data 
   const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '705b5aca63mshf454daf5bc4a7f5p1a6374jsn4a041afbac23',
+      'X-RapidAPI-Key': '611259f3f0mshda1f0678d127c1ep1a0169jsn13fee64e4191',
         'X-RapidAPI-Host': 'myanimelist.p.rapidapi.com'
       }
     };
@@ -161,7 +161,7 @@ router.post('/movieSearch',async function(req,res,next){ // gets the movie dta b
                 const options = {
                     method: 'GET',
                     headers: {
-                        'X-RapidAPI-Key': '20d7e74e2fmsh860fb5dc5a24770p127d70jsn69ac5f87d2f5',
+                        'X-RapidAPI-Key': '611259f3f0mshda1f0678d127c1ep1a0169jsn13fee64e4191',
                         'X-RapidAPI-Host': 'imdb-com.p.rapidapi.com'
                     }
                 };
@@ -227,7 +227,7 @@ router.post('/showsGenre',async function(req,res,next){ // gets the shows data b
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '705b5aca63mshf454daf5bc4a7f5p1a6374jsn4a041afbac23',
+                  'X-RapidAPI-Key': '611259f3f0mshda1f0678d127c1ep1a0169jsn13fee64e4191',
                     'X-RapidAPI-Host': 'ott-details.p.rapidapi.com'
                 }
             };
@@ -274,7 +274,7 @@ router.post('/showsSearch',async function(req,res,next){
                 const options = {
                     method: 'GET',
                     headers: {
-                        'X-RapidAPI-Key': '20d7e74e2fmsh860fb5dc5a24770p127d70jsn69ac5f87d2f5',
+                      'X-RapidAPI-Key': '611259f3f0mshda1f0678d127c1ep1a0169jsn13fee64e4191',
                         'X-RapidAPI-Host': 'imdb-com.p.rapidapi.com'
                     }
                 };
